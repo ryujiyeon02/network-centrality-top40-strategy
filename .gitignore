@@ -1,0 +1,28 @@
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+~$*
+
+# Large/local raw data
+데이터원본/
+*거래대금*.csv
+*거래대금*.xlsx
+*수정주가*.csv
+*수정주가*.xlsx
+*시가총액*.csv
+*시가총액*.xlsx
+*배당수익률_일별_전체*.csv
+*배당수익률_일별_전체*.xlsx
+daily_scores.csv
+lead_lag_pairs.csv
+trading value.csv
+trading value 60.csv
+total adj close.csv
+4팩터.csv
+KOSPI200.csv
+회귀분석_코스피.csv
+
+# Local generated clutter
+output/.DS_Store
+final_figure/.DS_Store

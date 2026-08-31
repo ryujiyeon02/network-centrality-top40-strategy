@@ -1,0 +1,4 @@
+*.ipynb linguist-documentation=false
+*.csv linguist-generated=false
+*.png linguist-generated=false
+*.html linguist-generated=false
