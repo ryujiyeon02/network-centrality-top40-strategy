@@ -4,6 +4,40 @@
 
 이 전략은 종목을 독립적인 점으로 보지 않고, 최근 수익률 상관관계로 연결된 네트워크의 노드로 봅니다. 목표는 단순히 소형주나 고배당주를 사는 것이 아니라, 시장 네트워크 안에서 구조적으로 의미 있는 위치를 가지면서도 시장 전체 공통축에는 과도하게 묶이지 않은 종목을 선별하는 것입니다.
 
+[![최종 전략 성과](final/final_strategy_v2.png)](final/final_strategy_v2.png)
+
+## 한눈에 보기
+
+| 항목 | 내용 |
+| --- | --- |
+| 구분 | 2026-1 3인 팀 프로젝트 (분석 전반 참여, 발표 장표 구성·제작) |
+| 기간·유니버스 | 2000-01 ~ 2025-12, 3,751개 종목 |
+| 신호 | 60거래일 수익률 상관 네트워크 → 시가총액 보정 eigenvector centrality에서 시장 공통축(제1고유벡터) 노출을 감점, z-score로 결합 |
+| 포트폴리오 | 월간 리밸런싱, 점수 상위 분위(Q5) 동일가중 · Top40 |
+| 핵심 결과 | Q5 수수료 후 CAGR 17.62%, Sharpe 0.60 · Carhart 4팩터 알파 16.59% (t=4.50) · 분위별 CAGR이 Q1 -6.15% → Q5 23.62%로 단조 증가 |
+| 한계 | SMB 노출 1.01로 소형주 성격이 강함 · 수수료 후 MDD -54.4% · 평균 턴오버 86.1% |
+
+## English summary
+
+A Korean equity strategy that treats stocks as nodes in a **return-correlation network** (2026-1, 3-person team project).
+
+- **Network:** 60-trading-day return correlations, cleaned with Marchenko–Pastur (random-matrix) clipping. Negative links are set to zero.
+- **Score:** market-cap-adjusted eigenvector centrality, minus a data-driven penalty on each stock's loading on the first eigenvector (the market mode). The two are combined as z-scores.
+- **Filters:** the following stocks are excluded.
+  - Bottom 10% by liquidity.
+  - A data-driven share of the largest caps.
+  - Halted stocks, SPACs, and stocks priced under 1,000 KRW.
+- **Portfolio:** monthly rebalanced, equal-weighted top quintile (Q5) and a Top-40 version.
+
+| Backtest (2000-01 – 2025-12, 3,751 stocks) | Q5 |
+|---|---:|
+| CAGR before / after costs | 23.62% / 17.62% |
+| Sharpe (after costs) | 0.60 |
+| Max drawdown (after costs) | −54.4% |
+| Carhart 4-factor alpha (t-stat) | 16.59% (4.50) |
+
+Quintile returns rise monotonically from Q1 (−6.15%) to Q5 (23.62%). A size × score double sort checks that the signal is not just a small-cap effect.
+
 ## 한 줄 요약
 
 주식 간 상관관계를 네트워크로 만들고, 시가총액 편향을 보정한 eigenvector centrality와 제1고유벡터 시장팩터 노출을 결합해 중심성 점수를 계산한 뒤, 점수 상위 종목군으로 포트폴리오를 구성하는 전략입니다.
